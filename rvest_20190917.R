@@ -1,6 +1,6 @@
 library("rvest"); library("dplyr");library(stringr); library("RSelenium")
 
-check<-c()    #ºô­¶ºô§}²M³æ
+check<-c()    #ç¶²é ç¶²å€æ¸…å–®
 p<-c()    
 
 for (i in c(1:39)) {
@@ -9,7 +9,7 @@ for (i in c(1:39)) {
   check<-c(check, p)
 }
 
-# ³s±µ Selenium ¦øªA¾¹¡A¿ï¥Î Chorme ÂsÄı¾¹
+# é€£æ¥ Selenium ä¼ºæœå™¨ï¼Œé¸ç”¨ Chorme ç€è¦½å™¨
 rem <- remoteDriver(
     remoteServerAddr = "localhost",
     port = 4444,
@@ -19,27 +19,25 @@ rem <- remoteDriver(
 # the numbers of strata in checklist
 
 rem$open()
-PA<-NULL    #¨C­Óºô­¶²M³æ¤¤ªºstatum¼Æ¶q
+PA<-NULL    #æ¯å€‹ç¶²é æ¸…å–®ä¸­çš„statumæ•¸é‡
 
 for (k in check) {
     Sys.sleep(runif(1,2,5))
     rem$navigate(k)
     web <- rem$findElement(using = "xpath", value = '//*[@id="queryListForm"]/div[3]/div/div/div/div/div[4]/div[1]')
-    pa<-as.character(web$getElementText()) %>% substr(start=3,stop=4) %>% str_trim() %>% as.numeric()    #§ì¨ú­¶¼Æ¸ê°T(³Ì¤j2¦ì¼Æ)
-    PA<-c(PA,pa)    #±Nª¦¨úªº­¶¼Æ¸ê°TÀx¦s¬°vector
+    pa<-as.character(web$getElementText()) %>% substr(start=3,stop=4) %>% str_trim() %>% as.numeric()    #æŠ“å–é æ•¸è³‡è¨Š(æœ€å¤§2ä½æ•¸)
+    PA<-c(PA,pa)    #å°‡çˆ¬å–çš„é æ•¸è³‡è¨Šå„²å­˜ç‚ºvector
 }
 
 
-#¶}©lª¦¨ú¸ê®Æ
+#é–‹å§‹çˆ¬å–è³‡æ–™
 
 rem$open()
-
-
 
 for (k in 1644:length(check)) {
   rem$navigate(check[k])
   web <- rem$findElement(using = "xpath", value = '//*[@id="queryListForm"]/div[3]/div/div/div/div/div[4]/div[1]')
-  pa<-as.character(web$getElementText()) %>% substr(start=3,stop=4) %>% str_trim() %>% as.numeric()    #§ì¨ú­¶¼Æ¸ê°T(³Ì¤j2¦ì¼Æ)
+  pa<-as.character(web$getElementText()) %>% substr(start=3,stop=4) %>% str_trim() %>% as.numeric()    #æŠ“å–é æ•¸è³‡è¨Š(æœ€å¤§2ä½æ•¸)
   
   if (pa>1) {
     for(s in 1:pa) {
@@ -51,22 +49,22 @@ for (k in 1644:length(check)) {
       class<- rem$findElement(using = "xpath", value = '/html/body/div[2]/div[1]/div/div/div/div/nav/div/div[3]/span')
       cc<-class$getElementText()     # get the title of the page
       
-      ans<-substr(cc, start = 1,stop =2) %>% grepl("¤u¼t")    #­Y¬°¤½¥q¡Aans=F; ­Y¬°¤u¼t¡Aans=T
+      ans<-substr(cc, start = 1,stop =2) %>% grepl("å·¥å» ")    #è‹¥ç‚ºå…¬å¸ï¼Œans=F; è‹¥ç‚ºå·¥å» ï¼Œans=T
         if (ans==FALSE) {
             infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[1]/td[2]')
             c_id<-infor$getElementText()
-            c_id<-gsub('­q¾\', replacement = '', c_id)
+            c_id<-gsub('è¨‚é–±', replacement = '', c_id)
             C_id = as.character(c(C_id, c_id)) %>% str_trim()
             
             infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[3]/td[2]')
             c_name<-infor$getElementText() %>% as.character()
-            c_name<-strsplit(c_name, split="Google·j´M")
+            c_name<-strsplit(c_name, split="Googleæœå°‹")
             c_name = c_name[[1]][1]
             C_name = as.character(c(C_name, c_name)) %>% str_trim()
             
             infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[9]/td[2]')
             c_address<-infor$getElementText()
-            c_address<-gsub('¹q¤l¦a¹Ï', replacement = '', c_address)
+            c_address<-gsub('é›»å­åœ°åœ–', replacement = '', c_address)
             C_address = as.character(c(C_address, c_address)) %>% str_trim()
             
             infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[8]/td[2]')
@@ -113,22 +111,22 @@ for (k in 1644:length(check)) {
       class<- rem$findElement(using = "xpath", value = '/html/body/div[2]/div[1]/div/div/div/div/nav/div/div[3]/span')
       cc<-class$getElementText()     # get the title of the page
       
-        ans<-substr(cc, start = 1,stop =2) %>% grepl("¤u¼t")    #­Y¬°¤½¥q¡Aans=F; ­Y¬°¤u¼t¡Aans=T
+        ans<-substr(cc, start = 1,stop =2) %>% grepl("å·¥å» ")    #è‹¥ç‚ºå…¬å¸ï¼Œans=F; è‹¥ç‚ºå·¥å» ï¼Œans=T
       
           infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[1]/td[2]')
           c_id<-infor$getElementText()
-          c_id<-gsub('­q¾\', replacement = '', c_id)
+          c_id<-gsub('è¨‚é–±', replacement = '', c_id)
           C_id = as.character(c(C_id, c_id)) %>% str_trim()
         
           infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[3]/td[2]')
           c_name<-infor$getElementText() %>% as.character()
-          c_name<-strsplit(c_name, split="Google·j´M")
+          c_name<-strsplit(c_name, split="Googleæœå°‹")
           c_name = c_name[[1]][1]
           C_name = as.character(c(C_name, c_name)) %>% str_trim()
           
           infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[9]/td[2]')
           c_address<-infor$getElementText()
-          c_address<-gsub('¹q¤l¦a¹Ï', replacement = '', c_address)
+          c_address<-gsub('é›»å­åœ°åœ–', replacement = '', c_address)
           C_address = as.character(c(C_address, c_address)) %>% str_trim()
           
           infor<-rem$findElement(using = "xpath", value = '//*[@id="tabCmpyContent"]/div/table/tbody/tr[8]/td[2]')
@@ -171,6 +169,7 @@ for (k in 1644:length(check)) {
 
 COM_basic<-list(C_id,C_name,C_address,C_represent,C_capital,C_Rcapital,C_registration,C_setdate,C_lastdate) %>%
            as.data.frame()
-names(COM_basic)<-c("²Î¤@½s¸¹","¤½¥q¦WºÙ","¤½¥q©Ò¦b¦a","¥Nªí¤H","¸ê¥»Á`ÃB(¤¸)","¹ê»Ú¸ê¥»Á`ÃB(¤¸)","µn°O¾÷Ãö",
-                    "®Ö­ã³]¥ß¤é´Á","³Ì«á®Ö­ãÅÜ§ó¤é´Á")
+names(COM_basic)<-c("çµ±ä¸€ç·¨è™Ÿ","å…¬å¸åç¨±","å…¬å¸æ‰€åœ¨åœ°","ä»£è¡¨äºº","è³‡æœ¬ç¸½é¡(å…ƒ)","å¯¦éš›è³‡æœ¬ç¸½é¡(å…ƒ)","ç™»è¨˜æ©Ÿé—œ",
+                    "æ ¸å‡†è¨­ç«‹æ—¥æœŸ","æœ€å¾Œæ ¸å‡†è®Šæ›´æ—¥æœŸ")
 write.csv(COM_basic, file = "Basic_information.csv")
+
