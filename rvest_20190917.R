@@ -1,12 +1,12 @@
 library("rvest"); library("dplyr");library(stringr); library("RSelenium")
 
-check<-c()    #網頁網址清單
+check<-c()    #網頁網址清單(空白資料向量)
 p<-c()    
 
 for (i in c(1:39)) {
   p<-read_html(paste0('https://gcis.nat.gov.tw/mainNew/closeCmpyAction.do?method=list&d-16496-p=',i)) %>%
   html_nodes(".td_showg a") %>% html_attr("href")
-  check<-c(check, p)
+  check<-c(check, p)    #以獲得網址資訊更新「網頁網址清單」
 }
 
 # 連接 Selenium 伺服器，選用 Chorme 瀏覽器
