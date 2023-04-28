@@ -15,61 +15,61 @@ rem <- remoteDriver(
   browserName = "chrome")
 
 # layer
-a1=NULL; b2=NULL; c3=NULL; d4=NULL    #ºô¯¸¤º³¡¦³¥|¼hµ²ºc
+a1=NULL; b2=NULL; c3=NULL; d4=NULL    #ç¶²ç«™å…§éƒ¨æœ‰å››å±¤çµæ§‹
 
 #manipulation
 rem$open()
 rem$navigate(URL)
-url<-as.character(rem$getCurrentUrl())   #Àò¨ú·í«eurl¡A¨ÃÂà´«¬°charcter
+url<-as.character(rem$getCurrentUrl())   #ç²å–ç•¶å‰urlï¼Œä¸¦è½‰æ›ç‚ºcharcter
 
 a1<- read_html(url) %>%
   html_nodes("div.col-md-6") %>% 
-  html_text() %>%  #CSS¬[ºc¤U¡Adiv¤Uªºcol-md-6¼ĞÅÒ
+  html_text() %>%  #CSSæ¶æ§‹ä¸‹ï¼Œdivä¸‹çš„col-md-6æ¨™ç±¤
   str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length()
 
 for(i in 1:a1) {
 lay1 <- rem$findElement(using = "xpath", 
                         paste0('//*[@id="ContentPlaceHolder_PageContent_detail_divCategory"]/div/ul/li[',i,']/a'))
-lay1$clickElement()    #ÂIÀ»
-link1<-as.character(rem$getCurrentUrl())   #Àò¨ú·í«eurl¡A¨ÃÂà´«¬°charcter
+lay1$clickElement()    #é»æ“Š
+link1<-as.character(rem$getCurrentUrl())   #ç²å–ç•¶å‰urlï¼Œä¸¦è½‰æ›ç‚ºcharcter
 Sys.sleep(1)
 
 b2<- read_html(link1) %>%
-html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSS¬[ºc¤U¡Adiv¤Uªºcol-md-6¼ĞÅÒ
-str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(1)   #´î±¼«e¤@¼hªº¼ĞÅÒ¼Æ¡A¬G´î1
+html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSSæ¶æ§‹ä¸‹ï¼Œdivä¸‹çš„col-md-12æ¨™ç±¤
+str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(1)   #æ¸›æ‰å‰ä¸€å±¤çš„æ¨™ç±¤æ•¸ï¼Œæ•…æ¸›1
 
   for(j in 1:b2) {
   lay2 <- rem$findElement(using = "xpath", 
                           paste0('//*[@id="ContentPlaceHolder_PageContent_detail_divCategory"]/div/ul[2]/li[',j,']/a'))
-  lay2$clickElement()    #ÂIÀ»
-  link2<-as.character(rem$getCurrentUrl())   #Àò¨ú·í«eurl¡A¨ÃÂà´«¬°charcter
+  lay2$clickElement()    #é»æ“Š
+  link2<-as.character(rem$getCurrentUrl())   #ç²å–ç•¶å‰urlï¼Œä¸¦è½‰æ›ç‚ºcharcter
   Sys.sleep(1)
   
   c3<- read_html(link2) %>%
-  html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSS¬[ºc¤U¡Adiv¤Uªºcol-md-6¼ĞÅÒ
-  str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(2)   #´î±¼«e¤G¼hªº¼ĞÅÒ¼Æ¡A¬G´î2
+  html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSSæ¶æ§‹ä¸‹ï¼Œdivä¸‹çš„col-md-12æ¨™ç±¤
+  str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(2)   #æ¸›æ‰å‰äºŒå±¤çš„æ¨™ç±¤æ•¸ï¼Œæ•…æ¸›2
   
     for(k in 1:c3) {
     lay3 <- rem$findElement(using = "xpath", 
                             paste0('//*[@id="ContentPlaceHolder_PageContent_detail_divCategory"]/div/ul[2]/li[',k,']/a'))
-    lay3$clickElement()    #ÂIÀ»
-    link3<-as.character(rem$getCurrentUrl())   #Àò¨ú·í«eurl¡A¨ÃÂà´«¬°charcter
+    lay3$clickElement()    #é»æ“Š
+    link3<-as.character(rem$getCurrentUrl())   #ç²å–ç•¶å‰urlï¼Œä¸¦è½‰æ›ç‚ºcharcter
     Sys.sleep(1)
     
     d4<- read_html(link3) %>%
-    html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSS¬[ºc¤U¡Adiv¤Uªºcol-md-6¼ĞÅÒ
-    str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(3)   #´î±¼«e¤T¼hªº¼ĞÅÒ¼Æ¡A¬G´î3
+    html_nodes("div.col-md-12 ul li") %>% html_text() %>%   #CSSæ¶æ§‹ä¸‹ï¼Œdivä¸‹çš„col-md-12æ¨™ç±¤
+    str_trim(side = "both") %>% str_split(pattern = "\r\n ") %>% unlist() %>% length() %>% '-'(3)   #æ¸›æ‰å‰ä¸‰å±¤çš„æ¨™ç±¤æ•¸ï¼Œæ•…æ¸›3
     
       for(l in 1:d4) {
       lay4 <- rem$findElement(using = "xpath", 
                               paste0('//*[@id="ContentPlaceHolder_PageContent_detail_divCategory"]/div/ul[2]/li[',l,']/a'))
-      lay4$clickElement()    #ÂIÀ»
-      link4<-as.character(rem$getCurrentUrl())   #Àò¨ú·í«eurl¡A¨ÃÂà´«¬°charcter
+      lay4$clickElement()    #é»æ“Š
+      link4<-as.character(rem$getCurrentUrl())   #ç²å–ç•¶å‰urlï¼Œä¸¦è½‰æ›ç‚ºcharcter
       Sys.sleep(1)
       
-      #.....»İ­n©ó¦¹³B¶}©l¼g¤Jª¦¨úÂ¾·~¤å¦rªº¤º®e.....#
+      #.....éœ€è¦æ–¼æ­¤è™•é–‹å§‹å¯«å…¥çˆ¬å–è·æ¥­æ–‡å­—çš„å…§å®¹.....#
       oc<-read_html(link4) %>% html_nodes("div.col-md-12 ul li") %>% html_text() %>% str_trim(side = "both") %>%
-            gsub(pattern = "²ÓÃş\t-\t", replacement = "-") %>% .[4]
+            gsub(pattern = "ç´°é¡\t-\t", replacement = "-") %>% .[4]
       OCCU<-append(OCCU,oc)
       
       des<-read_html(link4) %>% html_nodes("div.col-md-12 ul p") %>% html_text() %>% str_trim(side = "both")
@@ -95,5 +95,5 @@ dta <- data.frame(OCCU,DES)
 spt_cont<-as.data.frame(str_split_fixed(CONTENT, pattern = ";", n=50))
 dta<-cbind(dta,spt_cont)
 
-write.csv(dta,"¥D­pÁ`³BÂ¾·~¼Ğ·Ç¤ÀÃş_²Ä6¦¸­×­q(99¦~5¤ë).csv")
+write.csv(dta,"ä¸»è¨ˆç¸½è™•è·æ¥­æ¨™æº–åˆ†é¡_ç¬¬6æ¬¡ä¿®è¨‚(99å¹´5æœˆ).csv")
 
